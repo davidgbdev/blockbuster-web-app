@@ -33,7 +33,9 @@ cd blockbuster-web-app
 npm install
 ```
 
-4. Ejecuta la aplicación:
+4. Configura la clave de OMDb (ver la sección siguiente).
+
+5. Ejecuta la aplicación:
 ```
 npm start
 ```
@@ -46,8 +48,20 @@ La aplicación ahora debería estar corriendo en `http://localhost:3000/`.
 Puedes probar la aplicación en la siguiente URL: : [https://blockbuster-web-app.vercel.app/](https://blockbuster-web-app.vercel.app/)
 
 
-## Información de Conexión
+## Clave de la API de OMDb
 
-- **OMDB API:**  
-- Documentación: [http://www.omdbapi.com/](http://www.omdbapi.com/)
-- API Key: XXXXXX
+La aplicación lee la clave desde la variable de entorno `REACT_APP_OMDB_API_KEY` (Create React App la inyecta en el build a partir de un archivo `.env` local).
+
+1. Solicita una clave gratuita en [OMDb API](https://www.omdbapi.com/apikey.aspx). La documentación está en [http://www.omdbapi.com/](http://www.omdbapi.com/).
+2. Copia la plantilla y edítala en la raíz del proyecto:
+```
+cp .env.example .env
+```
+3. En `.env`, sustituye el marcador por tu clave:
+```
+REACT_APP_OMDB_API_KEY=tu_clave_de_omdb
+```
+
+`.env` y `.env.local` están en `.gitignore` y no deben subirse al repositorio. Si cambias la variable, vuelve a ejecutar `npm start` o `npm run build` para que Create React App la vuelva a leer.
+
+Una clave usada en el código del front-end queda visible para quien use el sitio desplegado: aparece en el JavaScript que descarga el navegador. No la trates como un secreto de servidor.
